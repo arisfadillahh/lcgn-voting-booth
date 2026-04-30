@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LCGN AI 2026 — Voting Booth</title>
+
+  <!-- FingerprintJS for device fingerprinting -->
+  <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@4/dist/fp.min.js"></script>
+
+  <!-- Supabase JS client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">
+      <div class="nav-icon">🗳️</div>
+      <span class="nav-title">LCGN AI 2026</span>
+    </a>
+    <div class="nav-live">
+      <span class="dot"></span>
+      <span>Voting Live</span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <video id="hero-video" autoplay muted loop playsinline preload="auto">
+    <source src="https://raw.githubusercontent.com/arisfadillahh/lcgnai2026/main/public/images/background/bg.webm" type="video/webm">
+  </video>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="badge">
+      <span class="dot"></span>
+      Voting Booth — 2026
+    </div>
+
+    <div class="hero-logo-row">
+      <div class="hero-icon">🏆</div>
+      <div class="hero-logo-text">
+        <span class="sup">Lomba Cipta Game Nasional</span>
+        <h1>LCGN AI 2026</h1>
+      </div>
+    </div>
+
+    <h2 class="hero-headline"><span class="accent">Voting Booth</span></h2>
+
+    <p class="hero-desc">
+      Berikan satu suaramu untuk Game AI favoritmu. Voting diverifikasi geolokasi
+      dalam radius 1 km dari venue — satu suara per peserta.
+    </p>
+
+    <a href="#section-voting" class="btn-main">
+      <span>🗳️ Mulai Voting</span>
+    </a>
+  </div>
+</section>
+
+<!-- CARA VOTING -->
+<section id="section-howto">
+  <div class="container">
+    <div class="sec-head fade-in-up">
+      <span class="label">Panduan</span>
+      <h2>Cara <span class="accent">Voting</span></h2>
+      <p>Tiga langkah mudah untuk memberikan suaramu di LCGN AI 2026.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card fade-in-up">
+        <span class="step-num">01</span>
+        <div class="step-icon">📍</div>
+        <h3>Izinkan Lokasi</h3>
+        <p>Saat halaman dimuat, browser akan meminta izin akses GPS. Tap <strong style="color:var(--white-80)">Izinkan / Allow</strong> agar sistem dapat memverifikasi kehadiranmu di venue acara.</p>
+      </div>
+      <div class="step-card fade-in-up">
+        <span class="step-num">02</span>
+        <div class="step-icon">🛰️</div>
+        <h3>Pengecekan Area Otomatis</h3>
+        <p>Sistem secara otomatis memeriksa koordinatmu menggunakan formula Haversine. Harus berada dalam radius <strong style="color:var(--lime)">1 km</strong> dari titik pusat venue — Mal Ciputra Cibubur.</p>
+      </div>
+      <div class="step-card fade-in-up">
+        <span class="step-num">03</span>
+        <div class="step-icon">🗳️</div>
+        <h3>Cast your Vote</h3>
+        <p>Scan QR code di pameran atau masukkan kunci keamanan. Pilih game AI favoritmu, konfirmasi, dan suaramu tercatat di Supabase. Satu suara per peserta — tidak bisa diubah.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KETENTUAN -->
+<section id="section-terms">
+  <div class="container">
+    <div class="sec-head fade-in-up">
+      <span class="label">Ketentuan</span>
+      <h2>Syarat <span class="accent">Voting</span></h2>
+      <p>Baca ketentuan berikut sebelum memberikan suaramu.</p>
+    </div>
+    <div class="terms-grid">
+      <div class="term-card fade-in-up">
+        <div class="t-icon">📏</div>
+        <h4>Radius 1 km dari Venue</h4>
+        <p>Voting hanya diizinkan bagi pengunjung yang berada dalam radius <strong>1 km</strong> dari <strong>Mal Ciputra Cibubur</strong> (koordinat: -6.43956, 106.9040208).</p>
+      </div>
+      <div class="term-card fade-in-up">
+        <div class="t-icon">🔒</div>
+        <h4>Satu Suara Per Orang</h4>
+        <p>Setiap peserta hanya dapat memilih <strong>satu kali</strong>. Sistem menggunakan <strong>FingerprintJS v4</strong> + Supabase UNIQUE constraint + IP untuk mencegah double-vote.</p>
+      </div>
+      <div class="term-card fade-in-up">
+        <div class="t-icon">📱</div>
+        <h4>Scan QR atau Kunci Keamanan</h4>
+        <p>Gunakan QR Code di booth pameran untuk akses langsung. Atau masukkan <strong>Kunci Keamanan</strong> dari panitia bila mengakses secara manual.</p>
+      </div>
+      <div class="term-card fade-in-up">
+        <div class="t-icon">📅</div>
+        <h4>Waktu &amp; Tempat</h4>
+        <p>Voting dibuka pada hari pelaksanaan pameran. <strong>17 Mei 2026</strong> — Mal Ciputra Cibubur. Pastikan GPS aktif dan koneksi internet tersedia saat voting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOTING -->
+<section id="section-voting">
+  <div class="container">
+    <div class="sec-head fade-in-up">
+      <span class="label">Juara Favorit</span>
+      <h2>Pilih <span class="accent">Game Terbaik</span></h2>
+      <p>Satu suara per peserta — diverifikasi geolokasi + fingerprint + Supabase.</p>
+    </div>
+
+    <div id="state-loading" class="state-panel">
+      <div class="spinner"></div>
+      <div>
+        <p style="font-size:15px;font-weight:700;color:var(--white);">Memeriksa lokasi kamu…</p>
+        <p style="font-size:13.5px;color:var(--white-60);margin-top:5px;">Silakan izinkan akses lokasi saat diminta.</p>
+      </div>
+    </div>
+
+    <div id="state-blocked" class="state-panel hidden">
+      <div class="st-icon red"><span class="pulse-ring"></span>📍</div>
+      <div>
+        <p class="st-title">Di Luar Area yang Diizinkan</p>
+        <p class="st-desc" id="blocked-msg">Voting hanya tersedia di dalam <strong>Mal Ciputra Cibubur</strong>. Pastikan kamu berada di venue acara.</p>
+      </div>
+      <div class="glass-box"><span class="accent">📌 Zona Diizinkan:</span> Dalam radius 1 km dari Mal Ciputra Cibubur.</div>
+    </div>
+
+    <div id="state-voted" class="state-panel hidden">
+      <div class="st-icon"><span class="pulse-ring"></span>✅</div>
+      <div>
+        <p class="st-title">Kamu Sudah Voting!</p>
+        <p class="st-desc">Suaramu sudah tercatat di database. Terima kasih telah berpartisipasi di LCGN AI 2026!</p>
+      </div>
+      <div class="glass-box"><span class="accent">🎉 Terima kasih!</span> Hasil voting akan diumumkan di upacara penutupan.</div>
+    </div>
+
+    <div id="state-security" class="state-panel hidden">
+      <div class="st-icon" style="background:rgba(255,200,0,0.10);border-color:rgba(255,200,0,0.38);">
+        <span class="pulse-ring" style="border-color:rgba(255,200,0,0.28);"></span>🔐
+      </div>
+      <div>
+        <p class="st-title">Kunci Keamanan Diperlukan</p>
+        <p class="st-desc">Link ini dibuka tanpa token QR resmi. Masukkan Kunci Keamanan dari panitia untuk mengakses voting.</p>
+      </div>
+      <div class="security-gate">
+        <span class="sg-label">🔑 Kunci Keamanan</span>
+        <input type="text" id="sg-input" class="sg-input" placeholder="Masukkan kunci keamanan…" autocomplete="off" autocorrect="off" spellcheck="false" />
+        <span id="sg-error" class="sg-error-msg">Kunci keamanan salah. Coba lagi.</span>
+        <button class="sg-submit" id="sg-submit">🔓 Verifikasi Kunci</button>
+      </div>
+      <div class="glass-box" style="font-size:12px;"><span class="accent">ℹ️ Informasi:</span> Kunci keamanan tersedia di booth pameran. Atau scan QR Code di depan setiap game untuk akses langsung tanpa kunci.</div>
+    </div>
+
+    <div id="state-voting" class="hidden">
+      <div class="vote-topbar">
+        <div>
+          <p style="font-size:10.5px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--lime);margin-bottom:4px;">Lomba Cipta Game Nasional</p>
+          <h3>Pilih Game Favoritmu</h3>
+          <p>Tap tombol VOTE pada game AI favoritmu. Satu suara per peserta.</p>
+        </div>
+        <div class="loc-pill">
+          <span class="dot"></span>
+          <span id="loc-pill-text">Lokasi terverifikasi ✓</span>
+        </div>
+      </div>
+      <div class="games-grid" id="games-grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-brand-icon">🎮</div>
+      <div class="footer-brand-text">
+        <strong>LCGN AI 2026</strong>
+        <span>Lomba Cipta Game Nasional — Clevio Innovator Camp</span>
+      </div>
+    </div>
+    <div class="footer-copy">
+      <div>© 2026 <span class="lime">LCGN AI</span> — Clevio Innovator Camp</div>
+      <div>QR-Direct · Geolocation Guard · FingerprintJS v4 · Supabase · Anti-Double-Vote</div>
+    </div>
+  </div>
+</footer>
+
+<!-- CONFIRMATION MODAL -->
+<div id="confirm-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <span class="modal-emoji" id="modal-emoji">🎮</span>
+    <p class="modal-title">Konfirmasi Pilihanmu</p>
+    <h2 class="modal-game-name" id="modal-game-name">Game Title</h2>
+    <p class="modal-desc">Apakah benar Anda ingin memberikan suara untuk<br><strong id="modal-game-name-2">Game Title</strong>?</p>
+    <div id="modal-qr-note" class="modal-qr-badge hidden"><span>⚡</span> <span>QR Direct Vote</span></div>
+    <div class="modal-actions" style="margin-top:20px;">
+      <button class="modal-btn-confirm" id="modal-confirm"><span>✅ Ya, Konfirmasi</span></button>
+      <button class="modal-btn-cancel" id="modal-cancel">Batal</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="js/vote-logic.js"></script>
+</body>
+</html>
